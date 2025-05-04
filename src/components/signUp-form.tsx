@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "~/components/ui/card"
@@ -15,12 +16,13 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { logInSchema, signUpSchema } from "~/lib/shema/auth"
 import { FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage, Form } from "./ui/form"
-import { signUp } from "~/app/hooks/auth-hook"
+import { signUp } from "~/lib/hooks/auth-hook"
 
-export default function LoginForm({
+export default function SignUpForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -34,16 +36,16 @@ export default function LoginForm({
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
     const response = await signUp(values.email, values.password, values.username, "")
-
+    console.log(response)
   }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
+          <CardTitle>Sign Up for an account</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Sign Up
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -101,6 +103,12 @@ export default function LoginForm({
             </form>
           </Form>
         </CardContent>
+        <CardFooter>
+          <p className="text-sm text-muted-foreground">
+          Already have an account?{" "}
+            <a className="text-primary" href="/auth/sign-in">Sign in</a>
+          </p>
+        </CardFooter>
       </Card>
     </div>
   )
