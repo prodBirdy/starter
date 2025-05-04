@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "~/components/ui/button";
-import { User, useAuth } from "../lib/hooks/auth-hook";
+import { User, useAuth } from "../../hooks/use-auth";
 
 export default function Home() {
   const { session } = useAuth();
@@ -14,7 +14,6 @@ export default function Home() {
         <a href="/auth/sign-in">Login</a>
 
       )}
-
 
     </div>
   );

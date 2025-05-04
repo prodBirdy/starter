@@ -2,6 +2,7 @@
 import { authClient } from "~/lib/auth-client"
 import { useRouter } from "next/navigation";
 import { Button } from "~/components/ui/button";
+
 export const signUp = async (email: string, password: string, name: string, image: string | undefined) => {
     const { data, error } = await authClient.signUp.email({
         email: email,
@@ -14,7 +15,8 @@ export const signUp = async (email: string, password: string, name: string, imag
         },
         onSuccess: (ctx) => {
             //redirect to the dashboard or sign in page
-            window.location.href = "/";
+            window.location.href = "/dashboard";
+
         },
         onError: (ctx) => {
             // display the error message
@@ -42,7 +44,7 @@ export const signIn = async (email: string, password: string) => {
             },
             onSuccess: (ctx) => {
                 //redirect to the dashboard or sign in page
-                window.location.href = "/";
+                window.location.href = "/dashboard";
             },
             onError: (ctx) => {
                 // display the error message
@@ -58,29 +60,21 @@ export const signIn = async (email: string, password: string) => {
 
 }
 export const signOut = async () => {
-    await authClient.signOut({
-        fetchOptions: {
-            onSuccess: () => {
+    await authClient.signOut();
+}
 
-            },
-        },
-    });
+export const handleSignOut = async () => {
+    await signOut();
+    window.location.href = "/auth/sign-in";
 }
 
 export function User() {
-
     const {
         data: session,
         isPending,
         error,
         refetch
     } = authClient.useSession()
-    const router = useRouter();
-
-    const handleSignOut = async () => {
-        await signOut();
-        router.push("/auth/sign-in");
-    }
 
     return (
         <div>

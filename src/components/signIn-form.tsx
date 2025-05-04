@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { logInSchema, signUpSchema } from "~/lib/shema/auth"
 import { FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage, Form } from "./ui/form"
-import { signIn } from "~/lib/hooks/auth-hook"
+import { signIn } from "~/hooks/use-auth"
 
 export default function SignInForm({
   className,
