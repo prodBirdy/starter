@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "~/generated/prisma-client-js";
 import { compare, genSalt, hash } from 'bcrypt-ts';
 import { PASSWORDLENGTH , USERNAMELENGTH } from "~/lib/constants";
 

@@ -7,9 +7,15 @@ export const USERNAMELENGTH = {
   MAX: 50,
 };
 
+export const MAX_FILE_SIZE = 500000;
+export const CSV_TYPE = ["text/csv"];
+
 export default {
   PASSWORDLENGTH,
   USERNAMELENGTH,
+  MAX_FILE_SIZE,
+  CSV_TYPE
 };
+
 export type PasswordLength = typeof PASSWORDLENGTH;
 export type UsernameLength = typeof USERNAMELENGTH;
